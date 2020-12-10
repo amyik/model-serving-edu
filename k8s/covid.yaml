@@ -46,8 +46,8 @@ spec:
   selector:
     app: covid
   ports:
-  - port: 8090
-    targetPort: 8090
+  - port: 5000
+    targetPort: 5000
     nodePort: 30080
 ---
 apiVersion: autoscaling/v1
