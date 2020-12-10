@@ -17,7 +17,8 @@ spec:
           # image: gcr.io/msa-archi/41/covid:1
           image: covid
           ports:
-          - containerPort: 8090
+          # - containerPort: 8090
+          - containerPort: 5000
           env:
             # - name: URL_CARTSERVICE
             #   value: http://eshop-cartservice:8091
