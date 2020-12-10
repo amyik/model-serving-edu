@@ -38,7 +38,8 @@ ADD requirements.txt /
 # RUN pip install --proxy 70.10.15.10:8080 PyWavelets-1.1.1-cp36-cp36m-manylinux1_x86_64.whl
 # RUN pip install --proxy 70.10.15.10:8080 scikit_image-0.17.2-cp36-cp36m-manylinux1_x86_64.whl
 
-RUN pip install --proxy 70.10.15.10:8080 -r /requirements.txt
+# RUN pip install --proxy 70.10.15.10:8080 -r /requirements.txt
+RUN pip install -r /requirements.txt
 #RUN pip install --upgrade pip
 #RUN pip install -r /requirements.txt
 
