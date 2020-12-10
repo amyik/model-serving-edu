@@ -1,45 +1,45 @@
-# apiVersion: networking.istio.io/v1alpha3
-# kind: Gateway
-# metadata:
-#   name: covid-gateway
-#   namespace: myspace
-# spec:
-#   selector:
-#     istio: ingressgateway # use istio default controller
-#   servers:
-#   - port:
-#       number: 30380
-#       name: http
-#       protocol: HTTP
-#     hosts:
-#     - "*"
-# ---
-# apiVersion: networking.istio.io/v1alpha3
-# kind: VirtualService
-# metadata:
-#   name: covid-virtual-service
-#   namespace: myspace
-# spec:
-#   hosts:
-#   - "*"
-#   gateways:
-#   - covid-gateway
-#   http:
-#   - match:
-#     - uri:
-#         prefix: /
-#     - uri:
-#         exact: /
-#     rewrite:
-#       uri: /
-#     route:
-#     - destination:
-#         host: covid19-fastapi
-#         port:
-#           number: 8000
-#       weight: 30
-#     - destination:
-#         host: covid19-flask
-#         port:
-#           number: 5000
-#       weight: 70
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: covid-gateway
+  namespace: myspace
+spec:
+  selector:
+    istio: ingressgateway # use istio default controller
+  servers:
+  - port:
+      number: 30080
+      name: http
+      protocol: HTTP
+    hosts:
+    - "*"
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: covid-virtual-service
+  namespace: myspace
+spec:
+  hosts:
+  - "*"
+  gateways:
+  - covid-gateway
+  http:
+  - match:
+    - uri:
+        prefix: /
+    - uri:
+        exact: /
+    rewrite:
+      uri: /
+    route:
+    - destination:
+        host: covid19-fastapi
+        port:
+          number: 8000
+      weight: 0
+    - destination:
+        host: covid19-flask
+        port:
+          number: 5000
+      weight: 100

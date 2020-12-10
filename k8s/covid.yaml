@@ -33,13 +33,14 @@ metadata:
   name: covid
   namespace: myspace
 spec:
-  type: NodePort
+  # type: NodePort
+  type: ClusterIP
   selector:
     app: covid
   ports:
   - port: 5000
-    targetPort: 5000
-    nodePort: 30080
+    # targetPort: 5000
+    # nodePort: 30080
 ---
 apiVersion: autoscaling/v1
 kind: HorizontalPodAutoscaler
