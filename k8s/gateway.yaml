@@ -34,12 +34,12 @@ spec:
       uri: /
     route:
     - destination:
-        host: covid19-fastapi
+        host: covid-fast
         port:
           number: 8000
       weight: 0
     - destination:
-        host: covid19-flask
+        host: covid
         port:
           number: 5000
       weight: 100
