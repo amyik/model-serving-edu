@@ -1,2 +1,2 @@
-k delete ../k8s/covid.yaml
-k apply ../k8s/covid.yaml
+k delete -f ../k8s/covid.yaml
+k apply -f ../k8s/covid.yaml
