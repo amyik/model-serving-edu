@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: covid-fast
-  namespace: myspace
+  # namespace: myspace
 spec:
   replicas: 2
   selector:
@@ -22,35 +22,35 @@ spec:
           resources:
             requests:
               cpu: 500m
-              memory: 384Mi
+              memory: 1024Mi
             limits:
               cpu: 1000m
-              memory: 1024Mi
+              memory: 2048Mi
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: covid-fast
-  namespace: myspace
+  # namespace: myspace
 spec:
-  # type: NodePort
-  type: ClusterIP
+  type: NodePort
+  # type: ClusterIP
   selector:
     app: covid-fast
   ports:
   - port: 8000
-    # targetPort: 5000
-    # nodePort: 30080
+    targetPort: 8000
+    nodePort: 32080
 ---
 apiVersion: autoscaling/v1
 kind: HorizontalPodAutoscaler
 metadata:
-  name: covid-fast
+  name: covid
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: covid-fast
+    name: covid
   minReplicas: 2
   maxReplicas: 10
   targetCPUUtilizationPercentage: 50
