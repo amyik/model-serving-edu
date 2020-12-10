@@ -42,11 +42,12 @@ kind: Service
 metadata:
   name: covid
 spec:
-  type: ClusterIP
+  type: NodePort
   selector:
     app: covid
   ports:
   - port: 8090
+    nodePort: 30080
 ---
 apiVersion: autoscaling/v1
 kind: HorizontalPodAutoscaler
