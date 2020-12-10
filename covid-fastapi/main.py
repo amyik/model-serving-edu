@@ -229,7 +229,7 @@ UPLOAD_FOLDER = os.path.join('static', 'source')
 OUTPUT_FOLDER = os.path.join('static', 'result')
 ALLOWED_EXTENSIONS = set(['pdf', 'png', 'jpg', 'jpeg', 'PDF', 'PNG', 'JPG', 'JPEG'])
 
-covid_pneumo_model = load_model('./models/inceptionv3_saved.h5') #inceptionv3_saved.h5, covid_pneumo_model.h5
+# covid_pneumo_model = load_model('./models/inceptionv3_saved.h5') #inceptionv3_saved.h5, covid_pneumo_model.h5
 
 ##################################
 #### Define the WSGI server here
@@ -376,9 +376,9 @@ async def covid_classifier_model2(request: Request):
                        "instances": img.tolist()})
 
     #MODEL2_API_URL is tensorflow serving URL in another docker
-    HEADERS = {'content-type': 'application/json',
-                'Host': 'covid19.myspace.example.com'}
-    MODEL2_API_URL = 'http://34.97.79.121:8511/v1/models/covid19:predict'
+    HEADERS = {'content-type': 'application/json', 'Host': 'covid19.myspace.example.com'}
+    MODEL2_API_URL = 'http://kfserving-ingressgateway.istio-system:80/v1/models/covid19:predict'
+    # MODEL2_API_URL = 'http://34.97.79.121:8511/v1/models/covid19:predict'
     CLASS_NAMES = ['Covid19', 'Normal_Lung', 'Pneumonia_Bacterial_Lung']
 
 # HEADERS = {'content-type': 'application/json',
