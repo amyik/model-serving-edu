@@ -16,6 +16,7 @@ spec:
         - name: covid
           # image: gcr.io/msa-archi/41/covid:1
           image: amyik/covid
+          imagePullPolicy: Always
           # imagePullPolicy: Never
           # imagePullPolicy: IfNotPresent
           ports:
