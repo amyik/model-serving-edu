@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: covid
+  namespace: myspace
 spec:
   replicas: 2
   selector:
@@ -14,21 +15,11 @@ spec:
     spec:
       containers:
         - name: covid
-          # image: gcr.io/msa-archi/41/covid:1
           image: amyik/covid:kfs
           imagePullPolicy: Always
-          # imagePullPolicy: Never
-          # imagePullPolicy: IfNotPresent
           ports:
           - containerPort: 5000
-          # - containerPort: 8090
           env:
-            # - name: URL_CARTSERVICE
-            #   value: http://eshop-cartservice:8091
-            # - name: URL_PRODUCTSERVICE
-            #   value: http://eshop-productservice:8092
-            # - name: NATS_SPRING_SERVER
-            #   value: "nats://nats-cluster.default.svc.cluster.local:4222"
           resources:
             requests:
               cpu: 500m
@@ -41,6 +32,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: covid
+  namespace: myspace
 spec:
   type: NodePort
   selector:
@@ -62,3 +54,4 @@ spec:
   minReplicas: 2
   maxReplicas: 10
   targetCPUUtilizationPercentage: 50
+  
