@@ -376,8 +376,10 @@ async def covid_classifier_model2(request: Request):
                        "instances": img.tolist()})
 
     #MODEL2_API_URL is tensorflow serving URL in another docker
-    HEADERS = {'content-type': 'application/json', 'Host': 'covid19.myspace.example.com'}
-    MODEL2_API_URL = 'http://kfserving-ingressgateway.istio-system:80/v1/models/covid19:predict'
+    # HEADERS = {'content-type': 'application/json', 'Host': 'covid19.myspace.example.com'}
+    # MODEL2_API_URL = 'http://kfserving-ingressgateway.istio-system:80/v1/models/covid19:predict'
+    HEADERS = {'content-type': 'application/json'}
+    MODEL2_API_URL = 'http://34.97.79.121:8511/v1/models/covid19:predict'
     # MODEL2_API_URL = 'http://34.97.79.121:8511/v1/models/covid19:predict'
     CLASS_NAMES = ['Covid19', 'Normal_Lung', 'Pneumonia_Bacterial_Lung']
 
